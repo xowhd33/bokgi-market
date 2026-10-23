@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="복기 시장">
+<meta name="theme-color" content="#F5F6F9">
+<title>복기 시장</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%233071F2'/%3E%3Cpolyline points='20 12 16.5 12 14 19 10 5 7.5 12 4 12' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{--brand:#3071F2;--brand-tint:#EBF2FE;--card:#fff;--bg:#F5F6F9;--line:#E8EAEE;--line2:#D8DCE3;--text:#212528;--dim:#5D6573;--faint:#8A93A0;
+--profit:#E5484D;--profit-tint:#FDEEEE;--loss:#2E83F2;--loss-tint:#EAF3FE;--neutral:#F0F1F3;--amber:#EA580C;--amber-tint:#FFEDD5}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.5;padding:16px 16px calc(32px + env(safe-area-inset-bottom))}
+.wrap{max-width:760px;margin:0 auto}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:12px;box-shadow:0 1px 3px #171a1f0f}
+h2{font-size:16px;font-weight:800;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.sub{font-size:13px;color:var(--dim);line-height:1.55}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.top h1{font-size:24px;font-weight:900;letter-spacing:-.6px}
+.chip{font-size:12.5px;font-weight:800;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card)}
+.chip.final{color:var(--brand);border-color:#79BAF2;background:var(--brand-tint)}.chip.prov{color:#C2410C;border-color:#FDBA74;background:#FFF7ED}
+.stale{background:#FFF7ED;border:1px solid #FDBA74;color:#9A3412;border-radius:12px;padding:10px 12px;font-size:13.5px;margin-bottom:12px}
+.t4{--tc:var(--profit);--tb:var(--profit);--tf:#fff;--tz:var(--profit-tint)}.t3{--tc:var(--profit);--tb:var(--profit-tint);--tf:var(--profit);--tz:var(--profit-tint)}
+.t2{--tc:var(--dim);--tb:var(--neutral);--tf:var(--dim);--tz:var(--neutral)}.t1{--tc:var(--loss);--tb:var(--loss-tint);--tf:var(--loss);--tz:var(--loss-tint)}
+.t0{--tc:var(--loss);--tb:var(--loss);--tf:#fff;--tz:var(--loss-tint)}
+.v3{--tc:#C2410C;--tb:#C2410C;--tf:#fff}.v2{--tc:var(--amber);--tb:var(--amber-tint);--tf:#C2410C}.v1{--tc:var(--dim);--tb:var(--neutral);--tf:var(--dim)}.v0{--tc:var(--faint);--tb:#F3F4F6;--tf:var(--faint)}
+.hero{background:linear-gradient(135deg,var(--tz),var(--card) 75%)}
+.kick{font-size:12.5px;font-weight:700;color:var(--dim);margin-bottom:4px}
+.guide{font-size:30px;font-weight:900;letter-spacing:-.8px;color:var(--tc)}
+.sum{font-size:15.5px;font-weight:600;margin-top:8px;line-height:1.6}
+.why{font-size:13.5px;color:var(--dim);margin-top:5px}
+.note{font-size:12px;color:var(--faint);margin-top:8px}
+.lad{margin-top:12px}
+.ladh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.ladh b{font-size:15px;width:48px}
+.badge{display:inline-block;font-size:13.5px;font-weight:800;padding:3px 10px;border-radius:8px;background:var(--tb);color:var(--tf);white-space:nowrap}
+.badge.sm{font-size:12px;padding:2px 7px}
+.pend{font-size:12px;color:#C2410C;font-weight:700}
+.aln{font-size:12px;color:var(--dim);margin-top:6px;line-height:1.5}.aln b{font-weight:800;color:var(--text)}.aln b.up{color:var(--profit)}.aln b.down{color:var(--loss)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.step{font-size:11px;font-weight:600;text-align:center;padding:6px 1px;border-radius:7px;background:var(--tz);color:var(--tc);opacity:.45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step.on{opacity:1;background:var(--tb);color:var(--tf);font-weight:800;box-shadow:0 0 0 2px var(--card),0 0 0 3.5px var(--tc)}
+.sig{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+.conf{font-size:12px;font-weight:800;padding:3px 8px;border-radius:8px;border:1px solid var(--line)}
+.conf.hi{background:var(--brand-tint);color:var(--brand);border-color:#79BAF2}.conf.lo{background:#FFF7ED;color:#C2410C;border-color:#FDBA74}
+.sc{font-size:11.5px;padding:3px 7px;border-radius:7px;background:var(--bg);font-weight:700}
+.sc.up{color:var(--profit)}.sc.down{color:var(--loss)}.sc.flat{color:var(--dim)}
+.scores{display:grid;grid-template-columns:1fr;gap:12px}
+.num{font-size:42px;font-weight:900;letter-spacing:-1.4px;line-height:1;color:var(--tc);font-variant-numeric:tabular-nums}
+.max{font-size:15px;font-weight:700;color:var(--faint);margin:0 6px 0 4px}
+.grade{font-size:12.5px;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--tb);color:var(--tf)}
+.delta{font-size:12.5px;font-weight:800;color:var(--dim);margin-left:6px}.delta.up{color:var(--profit)}.delta.down{color:var(--loss)}
+.row{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px}
+.bar{position:relative;height:10px;border-radius:999px;background:var(--neutral);margin:12px 0 4px}
+.bar i{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--text);border:3px solid var(--card);box-shadow:0 1px 3px #0003}
+.bar s{position:absolute;top:0;bottom:0;text-decoration:none}
+.fact{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:13.5px}
+.fact span:first-child{color:var(--dim)}.fact b{font-weight:800}
+.days{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.day{background:var(--bg);border-radius:12px;padding:10px 12px}
+.day .chg{font-size:22px;font-weight:900;letter-spacing:-.5px}
+.profit{color:var(--profit)}.loss{color:var(--loss)}
+.tags{font-size:12px;color:var(--dim);margin-top:6px;line-height:1.6}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-size:12px;color:var(--dim);font-weight:700;text-align:left;padding:6px 5px;border-bottom:1px solid var(--line2);white-space:nowrap}
+td{padding:7px 5px;border-bottom:1px solid var(--line);white-space:nowrap}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+.seg{display:inline-flex;background:var(--bg);border-radius:9px;padding:3px;gap:2px}
+.seg button{font-size:12.5px;font-weight:700;color:var(--dim);padding:5px 9px;border-radius:7px}
+.seg button.on{background:var(--card);color:var(--text);box-shadow:0 1px 3px #0000001f}
+.info{font-size:12.5px;color:var(--dim);min-height:38px;margin:6px 0;line-height:1.5}
+.info b{color:var(--text)}
+svg{width:100%;height:auto;display:block;touch-action:pan-y}
+.lgd{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--dim);margin-top:6px}
+.lgd i{display:inline-block;width:12px;height:3px;border-radius:2px;vertical-align:middle;margin-right:4px}
+.lock{max-width:380px;margin:12vh auto 0;text-align:center}
+.lock .logo{width:56px;height:56px;border-radius:16px;background:var(--brand);margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
+.lock h1{font-size:22px;font-weight:900;margin-bottom:6px}
+.lock input[type=password]{width:100%;font:inherit;font-size:17px;padding:13px 14px;border-radius:12px;border:1px solid var(--line2);margin:16px 0 10px;background:var(--card)}
+.lock .go{width:100%;font-size:16px;font-weight:800;color:#fff;background:var(--brand);border-radius:12px;padding:13px}
+.lock label{display:flex;gap:8px;justify-content:center;align-items:center;font-size:13.5px;color:var(--dim);margin-top:12px}
+.err{color:var(--profit);font-size:13.5px;margin-top:10px;min-height:20px}
+.alerts{background:#FFFBEB;border-color:#FCD34D}.al{font-size:14px;padding:5px 0;border-top:1px solid #FDE68A;line-height:1.55}.al:first-of-type{border-top:none}.al b{font-size:12px;background:#FEF3C7;color:#92400E;border-radius:6px;padding:1px 6px;margin-right:4px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12.5px;color:var(--faint);margin-top:6px}
+.foot button{color:var(--brand);font-weight:700}
+@media(min-width:640px){.scores{grid-template-columns:1fr 1fr 1fr}.num{font-size:38px}}
+</style>
+</head>
+<body><div class="wrap" id="app"></div>
+<script>
+"use strict";
+const KEY = "bokgi-market-pw";
+const RG = ["대세 하락장", "하락장", "횡보장", "상승장", "대세 상승장"];
+const GUIDE = {"공격적 운용 검토": "t4", "기본 운용": "t2", "비중 축소": "t1", "방어적 운용": "t0"};
+const TAGS = {"갭 상승":"전날보다 크게 높게 출발","갭 하락":"전날보다 크게 낮게 출발","장중 반전":"출발 방향과 반대로 크게 움직임","거래대금 동반":"거래대금 평소보다 20%↑","거래대금 부족":"거래대금 평소보다 20%↓","상승 종목 우세":"오른 종목 60% 이상","하락 종목 우세":"내린 종목 60% 이상"};
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (x, nd = 0) => x == null || isNaN(x) ? "—" : Number(x).toLocaleString("ko-KR", {minimumFractionDigits: nd, maximumFractionDigits: nd});
+const sgn = (x, nd = 0) => x == null || isNaN(x) ? "—" : (x > 0 ? "+" : x < 0 ? "−" : "") + fmt(Math.abs(x), nd);
+const pl = x => x > 0 ? "profit" : x < 0 ? "loss" : "";
+const rg = r => "t" + Math.max(0, RG.indexOf(r));
+const tone = v => v == null ? "t2" : v >= 70 ? "t4" : v >= 55 ? "t3" : v >= 45 ? "t2" : v >= 30 ? "t1" : "t0";
+const ltone = v => v == null ? "t2" : v >= 65 ? "t4" : v >= 50 ? "t3" : v >= 35 ? "t2" : v >= 20 ? "t1" : "t0";
+const vtone = v => v == null ? "v1" : v >= 80 ? "v3" : v >= 65 ? "v2" : v >= 35 ? "v1" : "v0";
+const rank = p => p == null ? "—" : p >= 50 ? `상위 ${Math.max(1, Math.round(100 - p))}%` : `하위 ${Math.max(1, Math.round(p))}%`;
+const won = v => v == null ? "—" : sgn(Math.round(v)) + "원";
+const wonK = v => v == null ? "—" : Math.abs(v) >= 1e8 ? sgn(v / 1e8, 2) + "억" : Math.abs(v) >= 1e4 ? sgn(v / 1e4, Math.abs(v) >= 1e6 ? 0 : 1) + "만" : sgn(Math.round(v)) + "원";
+const eok = v => v == null ? "—" : Math.abs(v) >= 1e4 ? sgn(v / 1e4, 1) + "조" : sgn(v) + "억";
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+
+async function unlock(pw) {
+  const box = await (await fetch("data.json?t=" + Date.now(), {cache: "no-store"})).json();
+  if (!box.v) throw new Error("아직 올라온 데이터가 없습니다. Mac에서 휴대폰 비밀번호를 설정하면 30분 안에 올라옵니다.");
+  const salt = b64(box.salt), iv = b64(box.iv), ct = b64(box.ct), tag = b64(box.tag);
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveBits"]);
+  const bits = new Uint8Array(await crypto.subtle.deriveBits({name: "PBKDF2", salt, iterations: box.iter, hash: "SHA-256"}, base, 512));
+  const hk = await crypto.subtle.importKey("raw", bits.slice(32), {name: "HMAC", hash: "SHA-256"}, false, ["verify"]);
+  const msg = new Uint8Array(iv.length + ct.length); msg.set(iv); msg.set(ct, iv.length);
+  if (!await crypto.subtle.verify("HMAC", hk, tag, msg)) throw new Error("pw");
+  const ak = await crypto.subtle.importKey("raw", bits.slice(0, 32), "AES-CTR", false, ["decrypt"]);
+  const pt = await crypto.subtle.decrypt({name: "AES-CTR", counter: iv, length: 128}, ak, ct);
+  const text = box.gzip ? await new Response(new Blob([pt]).stream().pipeThrough(new DecompressionStream("gzip"))).text() : new TextDecoder().decode(pt);
+  return JSON.parse(text);
+}
+
+function lockScreen(msg) {
+  $("#app").innerHTML = `<div class="lock"><div class="logo"><svg viewBox="0 0 24 24" width="30" height="30"><polyline points="20 12 16.5 12 14 19 10 5 7.5 12 4 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <h1>복기 시장</h1><p class="sub">비밀번호를 넣으면 이 기기 안에서 내용을 풉니다.</p>
+  <form id="f"><input type="password" id="pw" autocomplete="current-password" placeholder="비밀번호" autofocus>
+  <button class="go" type="submit">열기</button>
+  <label><input type="checkbox" id="rem" checked> 이 기기에서 기억</label></form><div class="err" id="err">${esc(msg || "")}</div></div>`;
+  $("#f").onsubmit = async e => {
+    e.preventDefault();
+    const pw = $("#pw").value; $("#err").textContent = "푸는 중…";
+    try { const d = await unlock(pw); try { $("#rem").checked ? localStorage.setItem(KEY, pw) : localStorage.removeItem(KEY) } catch {} render(d) }
+    catch (er) { $("#err").textContent = er.message === "pw" ? "비밀번호가 맞지 않습니다." : "불러오지 못했습니다: " + er.message }
+  };
+}
+
+function gauge(v, zones) {
+  return `<div class="bar">${zones.map(([a, b, c]) => `<s class="${c}" style="left:${a}%;width:${b - a}%;background:var(--tz)"></s>`).join("")}<i style="left:${Math.max(0, Math.min(100, v || 0))}%"></i></div>`;
+}
+function ladder(name, x) {
+  const i = RG.indexOf(x.regime), sg = x.signals;
+  const sig = sg ? `<div class="sig"><span class="conf ${sg.level === "높음" ? "hi" : sg.level === "낮음" ? "lo" : ""}">확신도 ${esc(sg.level)} · ${Math.round(sg.agree * sg.n)}/${sg.n}</span>${
+    [["trend","추세"],["weekly","주봉"],["breadth","업종"],["flows","수급"]].filter(([k]) => sg.signals[k] != null).map(([k, t]) => { const v = sg.signals[k]; return `<span class="sc ${v >= 10 ? "up" : v <= -10 ? "down" : "flat"}">${v >= 10 ? "▲" : v <= -10 ? "▼" : "■"} ${t}${k === "breadth" ? " " + Math.round(v / 2 + 50) + "%" : ""}</span>` }).join("")}</div>` : "";
+  return `<div class="lad"><div class="ladh"><b>${name}</b><span class="badge ${rg(x.regime)}">${esc(x.regime)}</span>${x.regime_pending ? `<span class="pend">→ ${esc(x.regime_pending.to)} 전환 확인 중 ${x.regime_pending.days}/${x.regime_pending.need}</span>` : ""}</div>
+  <div class="steps">${RG.map((r, k) => `<span class="step ${rg(r)}${k === i ? " on" : ""}">${r}</span>`).join("")}</div>${alignLine(x.align, x.slope60)}${sig}</div>`;
+}
+function alignLine(a, sl) {
+  if (!a) return "";
+  const s = a.state === "정배열" ? "5 > 20 > 60일선" : a.state === "역배열" ? "5 < 20 < 60일선" : `5일선이 20일선 ${esc(a.short)}`;
+  const w = sl == null ? "" : sl > .5 ? "오름" : sl < -.5 ? "내림" : "평평", recent = a.cross && a.cross_days <= 20;
+  const note = recent && a.cross === "골든크로스" && w === "내림" ? " — 60일선 하락 중이라 힘 약함" : recent && a.cross === "데드크로스" && w === "오름" ? " — 60일선 상승 중이라 눌림 가능성" : "";
+  const cr = a.cross ? ` · 20·60 ${esc(a.cross)} ${a.cross_days ? a.cross_days + "일 전" : "오늘"}` : "";
+  return `<div class="aln"><b class="${a.state === "정배열" ? "up" : a.state === "역배열" ? "down" : ""}">${esc(a.state)} ${a.days}일째</b> (${s})${w ? " · 60일선 " + w : ""}${cr}${note}</div>`;
+}
+function summary(r) {
+  const x = r.tv_ratio, v = r.volatility.score;
+  const liq = x >= 1.15 ? `거래대금이 평소보다 ${Math.round((x - 1) * 100)}% 많고` : x <= .85 ? `거래대금이 평소보다 ${Math.round((1 - x) * 100)}% 적고` : "거래대금은 평소 수준이고";
+  const vol = v >= 65 ? "지수가 크게 출렁이는 장입니다" : v < 35 ? "지수 움직임이 작은 장입니다" : "지수 움직임은 보통입니다";
+  return `${liq} ${vol}.`;
+}
+function perfTable(title, rows) {
+  if (!rows || !rows.length) return "";
+  return `<h3 class="sub" style="margin:12px 0 4px;font-weight:800;color:var(--text)">${title}</h3><table><thead><tr><th>구분</th><th class="r">일수</th><th class="r">수익일</th><th class="r">하루 평균</th><th class="r">합계</th></tr></thead><tbody>${
+    rows.map(g => `<tr><td>${RG.includes(g.k) ? `<span class="badge sm ${rg(g.k)}">${esc(g.k)}</span>` : GUIDE[g.k] ? `<b style="color:var(--tc)" class="${GUIDE[g.k]}">${esc(g.k)}</b>` : esc(g.k)}</td><td class="r">${g.n}</td><td class="r">${g.win}%</td><td class="r ${pl(g.avg)}">${wonK(g.avg)}</td><td class="r ${pl(g.sum)}">${wonK(g.sum)}</td></tr>`).join("")}</tbody></table>`;
+}
+
+let STATE = null, RANGE = 250;
+function chart() {
+  const all = STATE.hist, rows = all.slice(-RANGE), n = rows.length;
+  if (n < 5) return "";
+  const W = 720, H1 = 180, H2 = 110, G = 26, T = 8, H = T + H1 + G + H2 + 20, PL = 6, PR = 6;
+  const ma = (k) => { const out = []; let s = 0; const base = all.length - n; for (let i = 0; i < all.length; i++) { s += all[i].kc; if (i >= k) s -= all[i - k].kc; i >= base && out.push(i >= k - 1 ? s / k : null) } return out };
+  const m20 = ma(20), m60 = ma(60);
+  const vals = rows.map(r => r.kc).concat(m20, m60).filter(v => v != null), lo = Math.min(...vals), up = Math.max(...vals);
+  const x = i => PL + (W - PL - PR) * i / (n - 1), y1 = v => T + H1 - (v - lo) / (up - lo || 1) * H1, y2b = T + H1 + G, y2 = v => y2b + H2 - v / 100 * H2;
+  const path = (arr, f) => arr.map((v, i) => v == null ? "" : `${i && arr[i - 1] != null ? "L" : "M"}${x(i).toFixed(1)} ${f(v).toFixed(1)}`).join("");
+  let bands = "", i = 0;
+  while (i < n) { let j = i; while (j + 1 < n && rows[j + 1].kr === rows[i].kr) j++; const c = ["#2E83F2", "#2E83F2", "#9CA3AF", "#E5484D", "#E5484D"][RG.indexOf(rows[i].kr)] || "#9CA3AF", o = [.2, .09, .06, .09, .2][RG.indexOf(rows[i].kr)] || .06;
+    bands += `<rect x="${x(i) - 1}" y="${T}" width="${Math.max(1, x(j) - x(i) + 2)}" height="${H1}" fill="${c}" fill-opacity="${o}"/>`; i = j + 1 }
+  let ticks = "", prev = "";
+  rows.forEach((r, k) => { const ym = r.d.slice(0, 7); if (ym !== prev && k > 0) { const m = +r.d.slice(5, 7); const step = n > 500 ? 6 : n > 200 ? 2 : 1; if ((m - 1) % step === 0) ticks += `<line x1="${x(k)}" x2="${x(k)}" y1="${T}" y2="${y2b + H2}" stroke="#E8EAEE"/><text x="${x(k)}" y="${H - 4}" font-size="12" fill="#5D6573" text-anchor="middle">${m === 1 ? r.d.slice(0, 4) : m + "월"}</text>` } prev = ym });
+  return `<svg id="ch" viewBox="0 0 ${W} ${H}">${bands}${ticks}
+   <path d="${path(m60, y1)}" fill="none" stroke="#12A150" stroke-width="1.6"/><path d="${path(m20, y1)}" fill="none" stroke="#E0A100" stroke-width="1.6"/>
+   <path d="${path(rows.map(r => r.kc), y1)}" fill="none" stroke="#212528" stroke-width="1.8"/>
+   <line x1="${PL}" x2="${W - PR}" y1="${y2(70)}" y2="${y2(70)}" stroke="#E5484D" stroke-dasharray="5 4"/><line x1="${PL}" x2="${W - PR}" y1="${y2(40)}" y2="${y2(40)}" stroke="#2E83F2" stroke-dasharray="5 4"/>
+   <path d="${path(rows.map(r => r.L), y2)}" fill="none" stroke="#0CA678" stroke-width="1.3"/><path d="${path(rows.map(r => r.C), y2)}" fill="none" stroke="#3071F2" stroke-width="2.2"/>
+   <line id="cur" x1="0" x2="0" y1="${T}" y2="${y2b + H2}" stroke="#212528" stroke-dasharray="3 3" visibility="hidden"/></svg>
+   <div class="lgd"><span><i style="background:#212528"></i>코스피</span><span><i style="background:#E0A100"></i>20일선</span><span><i style="background:#12A150"></i>60일선</span><span><i style="background:#3071F2"></i>종합 점수</span><span><i style="background:#0CA678"></i>유동성</span><span>배경 = 코스피 장세 · 점선 70 우호 / 40 위험</span></div>`;
+}
+function bindChart() {
+  const svg = $("#ch"); if (!svg) return;
+  const rows = STATE.hist.slice(-RANGE), n = rows.length;
+  const show = e => { const b = svg.getBoundingClientRect(), k = Math.max(0, Math.min(n - 1, Math.round((e.clientX - b.left) / b.width * (n - 1)))), r = rows[k];
+    $("#info").innerHTML = `<b>${r.d}</b> · 코스피 ${fmt(r.kc, 2)} <span class="badge sm ${rg(r.kr)}">${esc(r.kr)}</span><br>종합 <b>${fmt(r.C)}</b> · 유동성 <b>${fmt(r.L)}</b> · 변동성 <b>${fmt(r.V)}</b> · ${esc(r.g)}`;
+    const c = $("#cur"), xx = 6 + (720 - 12) * k / (n - 1); c.setAttribute("x1", xx); c.setAttribute("x2", xx); c.setAttribute("visibility", "visible") };
+  svg.addEventListener("pointermove", show); svg.addEventListener("pointerdown", show);
+}
+
+function render(d) {
+  STATE = d;
+  const L = d.latest, r = L.row, prev = L.prev, K = r.markets.KOSPI, Q = r.markets.KOSDAQ, P = d.perf || {};
+  const gen = new Date(d.generated_at.replace(" ", "T") + ":00+09:00"), ageH = (Date.now() - gen) / 36e5;
+  const now = new Date(), wd = now.getDay(), stale = ageH > 3 && wd >= 1 && wd <= 5 && now.getHours() >= 10 && now.getHours() < 17 || ageH > 30;
+  const delta = (c, o) => o == null ? "" : `<span class="delta ${c - o > 0 ? "up" : c - o < 0 ? "down" : ""}">${c - o > 0 ? "▲" : c - o < 0 ? "▼" : ""}${Math.abs(Math.round(c - o))} 어제보다</span>`;
+  const fl = L.flows || {};
+  $("#app").innerHTML = `
+  <div class="top"><h1>복기 시장</h1><span class="chip ${r.final ? "final" : "prov"}">${r.date} ${r.final ? "확정" : "잠정 · 장중"}</span></div>
+  ${stale ? `<div class="stale">마지막 갱신 ${d.generated_at} (${ageH >= 24 ? Math.floor(ageH / 24) + "일" : Math.floor(ageH) + "시간"} 전). Mac이 꺼져 있거나 잠들어 갱신이 멈췄을 수 있습니다.</div>` : ""}
+  <section class="card hero ${GUIDE[r.guide] || "t2"}"><div class="kick">오늘의 판단</div><div class="guide">${esc(r.guide)}</div>
+   <p class="sum">${summary(r)} 코스피는 ${esc(K.regime)}, 코스닥은 ${esc(Q.regime)}입니다.</p><p class="why">판단 근거: ${esc(r.guide_reason)}</p>
+   ${ladder("코스피", K)}${ladder("코스닥", Q)}<p class="note">참고용 가이드입니다. 주문이나 비중을 자동으로 바꾸지 않습니다.</p></section>
+  ${(() => { const ex = L.extras || {}, its = []; [["KOSPI", "코스피"], ["KOSDAQ", "코스닥"]].forEach(([m, nm]) => ((ex.warnings || {})[m] || []).forEach(x => its.push(`<div class="al"><b>${nm}</b> ${esc(x.text)}</div>`)));
+     return its.length ? `<section class="card alerts"><div class="kick" style="color:#92400E">전환 조기 경보 · 확인할 것</div>${its.join("")}</section>` : "" })()}
+  <div class="scores">
+   <section class="card"><h2>종합 시장 점수</h2><div class="row"><span class="num ${tone(r.market_score)}">${fmt(r.market_score)}</span><span class="max">/ 100</span><span class="grade ${tone(r.market_score)}">${esc(r.environment)}</span>${delta(r.market_score, prev && prev.C)}</div>
+    ${gauge(r.market_score, [[0, 40, "t0"], [40, 70, "t2"], [70, 100, "t4"]])}<p class="sub">70점 이상 우호적 · 40점 미만 위험</p></section>
+   <section class="card"><h2>유동성</h2><div class="row"><span class="num ${ltone(r.liquidity.score)}">${fmt(r.liquidity.score)}</span><span class="max">/ 100</span><span class="grade ${ltone(r.liquidity.score)}">${esc(r.liquidity.state)}</span>${delta(r.liquidity.score, prev && prev.L)}</div>
+    ${gauge(r.liquidity.score, [[0, 35, "t0"], [35, 65, "t2"], [65, 100, "t4"]])}
+    <div class="fact"><span>오늘 거래대금${r.final ? "" : "(추정)"}</span><b>${fmt(r.trade_value_mil / 1e6, 1)}조원</b></div>
+    <div class="fact"><span>평소 대비</span><b class="${r.tv_ratio >= 1 ? "profit" : "loss"}">${fmt(r.tv_ratio, 2)}배 · ${r.tv_ratio >= 1 ? Math.round((r.tv_ratio - 1) * 100) + "% 많음" : Math.round((1 - r.tv_ratio) * 100) + "% 적음"}</b></div>
+    <div class="fact"><span>1년 중 위치</span><b>${rank(r.liquidity.pct_level)}</b></div></section>
+   <section class="card"><h2>변동성</h2><div class="row"><span class="num ${vtone(r.volatility.score)}">${fmt(r.volatility.score)}</span><span class="max">/ 100</span><span class="grade ${vtone(r.volatility.score)}">${esc(r.volatility.state)}</span>${delta(r.volatility.score, prev && prev.V)}</div>
+    ${gauge(r.volatility.score, [[0, 35, "v0"], [35, 65, "v1"], [65, 100, "v2"]])}
+    <div class="fact"><span>코스피 하루 출렁임</span><b>${fmt(K.volatility.atr_pct, 2)}% · ${rank(K.volatility.pct_atr)}</b></div>
+    <div class="fact"><span>코스닥 하루 출렁임</span><b>${fmt(Q.volatility.atr_pct, 2)}% · ${rank(Q.volatility.pct_atr)}</b></div></section>
+  </div>
+  <section class="card"><h2>당일 장세 ${r.final ? "" : "<span class='sub'>(지금까지)</span>"}</h2><div class="days">${[["코스피", K], ["코스닥", Q]].map(([nm, x]) =>
+    `<div class="day"><div class="sub">${nm} ${fmt(x.close, 2)}</div><div class="row" style="gap:8px;align-items:center"><span class="chg ${pl(x.change_pct)}">${sgn(x.change_pct, 2)}%</span><span class="badge sm ${rg(x.day_regime)}">${esc(x.day_regime)}</span></div>
+     <div class="tags">${x.day_tags.length ? x.day_tags.map(t => `<b>${esc(t)}</b> ${esc(TAGS[t] || "")}`).join("<br>") : "특이 신호 없음"}</div></div>`).join("")}</div></section>
+  <section class="card"><h2>추이 <span class="seg" id="rng">${[[63, "3개월"], [126, "6개월"], [250, "1년"], [750, "3년"]].map(([v, t]) => `<button data-v="${v}" class="${RANGE === v ? "on" : ""}">${t}</button>`).join("")}</span></h2>
+   <div class="info" id="info">그래프를 누르거나 손가락으로 훑으면 그날 값이 보입니다.</div><div id="chw">${chart()}</div></section>
+  <section class="card"><h2>수급 <span class="sub">외국인·기관 순매수</span></h2><table><thead><tr><th></th><th class="r">외국인 오늘</th><th class="r">외국인 20일</th><th class="r">기관 오늘</th><th class="r">기관 20일</th></tr></thead><tbody>${
+    [["KOSPI", "코스피"], ["KOSDAQ", "코스닥"]].filter(([m]) => fl[m]).map(([m, nm]) => `<tr><td>${nm}</td><td class="r ${pl(fl[m].foreign)}">${eok(fl[m].foreign)}</td><td class="r ${pl(fl[m].foreign_20d)}">${eok(fl[m].foreign_20d)}</td><td class="r ${pl(fl[m].institution)}">${eok(fl[m].institution)}</td><td class="r ${pl(fl[m].institution_20d)}">${eok(fl[m].institution_20d)}</td></tr>`).join("")}</tbody></table></section>
+  ${P.days ? `<section class="card"><h2>장세별 내 성과</h2><p class="sub">${P.from} ~ ${P.to} · ${P.days}일 · 수익일 ${P.win}% · 합계 <b class="${pl(P.total)}">${won(P.total)}</b> (수수료·세금 차감, 하루 합계 기준)</p>
+   ${perfTable("종합 점수 구간별", P.by_score)}${perfTable("운용 가이드별", P.by_guide)}${perfTable("코스닥 현재 장세별", P.by_kosdaq)}${perfTable("코스피 현재 장세별", P.by_kospi)}${perfTable("코스닥 확신도별", P.by_conf_kosdaq)}
+   <p class="note">표본이 적은 구간(10일 미만)은 우연일 수 있습니다.</p></section>` : ""}
+  <div class="foot"><span>갱신 ${esc(d.generated_at)} · 평일 30분마다</span><button id="lockb">잠그기</button></div>`;
+  $("#rng").onclick = e => { const v = +e.target.dataset.v; if (!v) return; RANGE = v; $("#chw").innerHTML = chart(); bindChart(); [...$("#rng").children].forEach(b => b.classList.toggle("on", +b.dataset.v === v)) };
+  $("#lockb").onclick = () => { try { localStorage.removeItem(KEY) } catch {} STATE = null; lockScreen("잠갔습니다.") };
+  bindChart();
+}
+
+(async () => {
+  let pw = null; try { pw = localStorage.getItem(KEY) } catch {}
+  if (!pw) return lockScreen();
+  try { render(await unlock(pw)) } catch (e) { lockScreen(e.message === "pw" ? "비밀번호가 바뀌었습니다. 다시 넣어 주세요." : "불러오지 못했습니다: " + e.message) }
+})();
+</script>
+</body>
+</html>
